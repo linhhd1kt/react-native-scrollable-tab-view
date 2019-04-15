@@ -149,19 +149,19 @@ const ScrollableTabBar = createReactClass({
     let tabStyle = styles.tab;
     let textStyle = styles.text;
 
-    if (this.prop.tabStyle) {
+    if (this.props.tabStyle) {
       tabStyle = { ...tabStyle, ...this.props.tabStyle };
     }
 
-    if (isTabActive && this.prop.activeTabStyle) {
+    if (isTabActive && this.props.activeTabStyle) {
       tabStyle = { ...tabStyle, ...this.props.activeTabStyle };
     }
 
-    if (this.prop.textStyle) {
+    if (this.props.textStyle) {
       textStyle = { ...textStyle, ...this.props.textStyle };
     }
 
-    if (isTabActive && this.prop.activeTextStyle) {
+    if (isTabActive && this.props.activeTextStyle) {
       textStyle = { ...textStyle, ...this.props.activeTextStyle };
     }
 
