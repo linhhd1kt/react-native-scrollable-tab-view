@@ -43,6 +43,9 @@ const ScrollableTabBar = createReactClass({
       backgroundColor: null,
       style: {},
       tabStyle: {},
+      activeTabStyle: {},
+      textStyle: {},
+      activeTextStyle: {},
       tabsContainerStyle: {},
       underlineStyle: {},
     };
