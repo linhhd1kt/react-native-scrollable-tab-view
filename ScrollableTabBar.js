@@ -175,7 +175,7 @@ const ScrollableTabBar = createReactClass({
         onLayout={onLayoutHandler}
       >
         <View style={tabStyle}>
-          <Text style={textStyle} numberOfLines={2}>
+          <Text style={textStyle} numberOfLines={1}>
             {name}
           </Text>
         </View>
