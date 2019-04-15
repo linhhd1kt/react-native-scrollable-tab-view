@@ -171,7 +171,12 @@ const ScrollableTabBar = createReactClass({
             borderStyle,
           ]}
         >
-          <Text style={{ color: textColor, fontSize, fontWeight }}>{name}</Text>
+          <Text
+            style={{ color: textColor, fontSize, fontWeight }}
+            numberOfLine={2}
+          >
+            {name}
+          </Text>
         </View>
       </Button>
     );
