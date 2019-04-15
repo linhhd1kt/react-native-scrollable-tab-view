@@ -173,7 +173,7 @@ const ScrollableTabBar = createReactClass({
         >
           <Text
             style={{ color: textColor, fontSize, fontWeight }}
-            numberOfLine={2}
+            numberOfLines={2}
           >
             {name}
           </Text>
