@@ -26,8 +26,10 @@ const ScrollableTabBar = createReactClass({
     scrollOffset: PropTypes.number,
     style: ViewPropTypes.style,
     tabStyle: ViewPropTypes.style,
+    activeTabStyle: ViewPropTypes.style,
     tabsContainerStyle: ViewPropTypes.style,
     textStyle: Text.propTypes.style,
+    activeTextStyle: Text.propTypes.style,
     renderTab: PropTypes.func,
     underlineStyle: ViewPropTypes.style,
     onScroll: PropTypes.func,
@@ -141,19 +143,25 @@ const ScrollableTabBar = createReactClass({
   },
 
   renderTab(name, page, isTabActive, onPressHandler, onLayoutHandler) {
-    const textColor = isTabActive ? '#212121' : '#FFFFFF';
-    const fontSize = 16;
-    const fontWeight = isTabActive ? 'bold' : 'normal';
-    const backgroundColor = isTabActive ? '#FFFFFF' : '#676767';
+    let tabStyle = styles.tab;
+    let textStyle = styles.text;
 
-    const borderStyle = isTabActive
-      ? {}
-      : {
-          borderLeftWidth: 1,
-          borderRightWidth: 1,
-          borderLeftColor: '#CCCCCC',
-          borderRightColor: '#CCCCCC',
-        };
+    if (this.prop.tabStyle) {
+      tabStyle = { ...tabStyle, ...this.props.tabStyle };
+    }
+
+    if (isTabActive && this.prop.activeTabStyle) {
+      tabStyle = { ...tabStyle, ...this.props.activeTabStyle };
+    }
+
+    if (this.prop.textStyle) {
+      textStyle = { ...textStyle, ...this.props.textStyle };
+    }
+
+    if (isTabActive && this.prop.activeTextStyle) {
+      textStyle = { ...textStyle, ...this.props.activeTextStyle };
+    }
+
     return (
       <Button
         key={`${name}_${page}`}
@@ -163,18 +171,8 @@ const ScrollableTabBar = createReactClass({
         onPress={() => onPressHandler(page)}
         onLayout={onLayoutHandler}
       >
-        <View
-          style={[
-            styles.tab,
-            this.props.tabStyle,
-            { backgroundColor },
-            borderStyle,
-          ]}
-        >
-          <Text
-            style={{ color: textColor, fontSize, fontWeight }}
-            numberOfLines={2}
-          >
+        <View style={tabStyle}>
+          <Text style={textStyle} numberOfLines={2}>
             {name}
           </Text>
         </View>
@@ -285,11 +283,13 @@ module.exports = ScrollableTabBar;
 const styles = StyleSheet.create({
   tab: {
     height: 49,
-    width: 120,
     alignItems: 'center',
     justifyContent: 'center',
     paddingLeft: 16,
     paddingRight: 16,
+  },
+  text: {
+    fontSize: 16,
   },
   container: {
     height: 50,
